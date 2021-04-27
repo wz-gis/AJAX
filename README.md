@@ -170,12 +170,12 @@ app.all('/cors-server', (request, response) => {
     // response.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:5500");
     response.send('hello CORS');
 });
-**1 CORS 是什么？**
+1 CORS 是什么？
 CORS（Cross-Origin Resource Sharing），跨域资源共享。CORS 是官方的跨域解决方
 案，它的特点是**不需要在客户端做任何特殊的操作，完全在服务器中进行处理**，支持 get 和 post 请求。跨域资源共享标准新增了一组 HTTP 首部字段，允许服务器声明哪些源站通过浏览器有权限访问哪些资源
-**2 CORS 怎么工作的？**
+2 CORS 怎么工作的？
 CORS 是通过设置一个响应头来告诉浏览器，该请求允许跨域，浏览器收到该响应以后就会对响应放行。
-**3 CORS 的使用主要是服务器端的设置：**
+3 CORS 的使用主要是服务器端的设置：
 router.get("/testAJAX" , function (req , res) {
 //通过 res 来设置响应头，来允许跨域请求
 //res.set(“Access-Control-Allow-Origin”,“http://127.0.0.1:3000”); res.set(“Access-Control-Allow-Origin”,"*");
