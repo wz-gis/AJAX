@@ -1,0 +1,2 @@
+# AJAX
+Ajax练习

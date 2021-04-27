@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax get</title>
+    <style>
+        .result{
+            width: 200px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <button>发送请求</button>
+    <div id="result"></div>
+
+    <script>
+        //获取元素
+        var btn = document.getElementsByTagName('button')[0];
+        var result = document.getElementById("result");
+        //绑定事件
+        btn.onclick = function(){
+            //创建对象
+            var xhr = new XMLHttpRequest();
+            //初始化
+            xhr.ontimeout = function(){
+                alert('网络异常');
+            };
+            xhr.onerror = function(){
+                alert('你的网络似乎出了一些问题');
+
+            }
+            xhr.open('get', 'http://127.0.0.1:8000/delay');
+            //发送
+            xhr.send();
+            //事件绑定，处理服务端返回结果
+            // readystate 是 xhr 对象中的属性, 表示状态 0 1 2 3 4
+                        /* 
+            0表示未初始化
+            1表示open已经调用完毕
+            2表示send已经调用完毕
+            3代表返回部分结果
+            4表示返回所有结果
+            */
+            xhr.onreadystatechange = function(){
+                //服务器返回了所有结果
+                if(xhr.readyState == 4){
+                    // 判断响应成功码 2**
+                    if(xhr.status >= 200 && xhr.status < 300){
+                        //响应
+                        console.log(xhr.status);
+                        console.log(xhr.statusText);
+                        console.log(xhr.getAllResponseHeaders());
+                        console.log(xhr.response);
+                        result.innerHTML = xhr.response;
+                    }else{
+                        console.log('响应失败');
+                    }
+
+                }
+            }
+        }
+
+    </script>
+</body>
+</html>
